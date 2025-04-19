@@ -6,14 +6,19 @@ When a function is used as the target of the `action` prop of a React form, the 
 
 Remember to add the `name` prop to all elements of the form.
 
-```ts
-export default function myFn() {
-    function handleForm(formData) {
+```js
+import { useActionState } from "react";
+export default function SomeForm() {
+    function myActionFn(previousFormState, formData) {
         // some logic here
     }
+
+    const [formState, formAction] = useActionState(myActionFn, {errors: null});
+
     return (
-        <form action={myFn}>
+        <form action={formAction}>
             {/* ...some logic and elements here */}
+            {formState.errors && <ul></ul>}
         </form>
     )
 }
