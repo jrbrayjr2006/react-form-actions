@@ -22,3 +22,4 @@ export default function myFn() {
 ## References
 
 - [useActionState](https://react.dev/reference/react/useActionState)
+- [React 19 Actions – How to Simplify Form Submission and Loading States](https://www.freecodecamp.org/news/react-19-actions-simpliy-form-submission-and-loading-states/)
