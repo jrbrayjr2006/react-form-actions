@@ -24,6 +24,8 @@ export default function SomeForm() {
 }
 ```
 
+**NOTE:** As of April 21, 2025, there is a React bug that does not populate the defaultValue properly for drop-down lists when using `useActionState`.  The maintainers of the React library will need to address this.
+
 ## References
 
 - [useActionState](https://react.dev/reference/react/useActionState)
