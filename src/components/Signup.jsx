@@ -3,74 +3,6 @@ import { isNotEmpty, isEmail, hasMinLength, isEqualToOtherValue } from "../util/
 
 export default function Signup() {
 
-  function submitAction(prevFormState, formData) {
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const confirmPassword = formData.get("confirm-password");
-    const firstName = formData.get("first-name");
-    const lastName = formData.get("last-name");
-    const role = formData.get("role");
-    const terms = formData.get("terms");
-    const aquisitionChannel = formData.getAll("acquisition");
-
-    let errors = [];
-
-    // Validate rules
-    if(!isEmail(email)) {
-      errors.push("Email is not valid");
-      console.log(errors);
-    }
-
-    if(!isNotEmpty(password) || !hasMinLength(password, 8)) {
-      errors.push("Password is required and must be at least 8 characters long");
-    }
-
-    if(!isEqualToOtherValue(password, confirmPassword)) {
-      errors.push("Password and confirm password must be the same");
-      console.log(errors);
-    }
-
-    if(!isNotEmpty(firstName)) {
-      errors.push("First name is required");
-    } 
-
-    if(!isNotEmpty(lastName)) {
-      errors.push("Last name is required");
-    }
-
-    if(!isNotEmpty(confirmPassword)) {
-      errors.push("Confirm password is required");
-    }
-
-    if(!isNotEmpty(role)) {
-      errors.push("Role is required");
-    }
-
-    if(!terms) {
-      errors.push("You must accept the terms and conditions");
-    }
-
-    if(aquisitionChannel.length === 0) {
-      errors.push("You must select at least one acquisition channel");
-    }
-
-    if(errors.length > 0) {
-      console.log(errors);
-      return {errors, enteredValues: {
-        email,
-        password,
-        confirmPassword,
-        firstName,
-        lastName,
-        role,
-        terms,
-        aquisitionChannel
-      }};
-    } else {
-      return {errors: null};
-    }
-  }
-
   const [formState, formAction] = useActionState(submitAction, {errors: null});
 
   return (
@@ -181,4 +113,73 @@ export default function Signup() {
       </p>
     </form>
   );
+}
+
+
+function submitAction(prevFormState, formData) {
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const confirmPassword = formData.get("confirm-password");
+  const firstName = formData.get("first-name");
+  const lastName = formData.get("last-name");
+  const role = formData.get("role");
+  const terms = formData.get("terms");
+  const aquisitionChannel = formData.getAll("acquisition");
+
+  let errors = [];
+
+  // Validate rules
+  if(!isEmail(email)) {
+    errors.push("Email is not valid");
+    console.log(errors);
+  }
+
+  if(!isNotEmpty(password) || !hasMinLength(password, 8)) {
+    errors.push("Password is required and must be at least 8 characters long");
+  }
+
+  if(!isEqualToOtherValue(password, confirmPassword)) {
+    errors.push("Password and confirm password must be the same");
+    console.log(errors);
+  }
+
+  if(!isNotEmpty(firstName)) {
+    errors.push("First name is required");
+  } 
+
+  if(!isNotEmpty(lastName)) {
+    errors.push("Last name is required");
+  }
+
+  if(!isNotEmpty(confirmPassword)) {
+    errors.push("Confirm password is required");
+  }
+
+  if(!isNotEmpty(role)) {
+    errors.push("Role is required");
+  }
+
+  if(!terms) {
+    errors.push("You must accept the terms and conditions");
+  }
+
+  if(aquisitionChannel.length === 0) {
+    errors.push("You must select at least one acquisition channel");
+  }
+
+  if(errors.length > 0) {
+    console.log(errors);
+    return {errors, enteredValues: {
+      email,
+      password,
+      confirmPassword,
+      firstName,
+      lastName,
+      role,
+      terms,
+      aquisitionChannel
+    }};
+  } else {
+    return {errors: null};
+  }
 }
